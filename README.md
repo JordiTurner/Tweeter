@@ -2,13 +2,13 @@
 
 Tweeter is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: 1 hours spent in total
+Time spent: 2 hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
-- [ ] User can sign in using OAuth login flow
+- [X] User can sign in using OAuth login flow
 - [ ] User can view last 20 tweets from their home timeline
 - [ ] The current signed in user will be persisted across restarts
 - [ ] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
@@ -39,7 +39,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+There were many struggles following the video, since much of the shown code is deprecated.
 
 ## License
 
