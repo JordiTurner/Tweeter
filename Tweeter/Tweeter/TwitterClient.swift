@@ -74,16 +74,37 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     
     }
-    func retweet() {
+    func retweet(tweetID: String) {
+        POST("1.1/statuses/retweet/\(tweetID).json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response:AnyObject?) -> Void in
+            print("Retweeted tweet \(tweetID)")
+        }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+            print("failed to retweet")
+            print(error)
+        })
+    }
+    func favorite(tweetID: String) {
+        POST("1.1/favorites/create.json?id=\(tweetID)", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response:AnyObject?) -> Void in
+            print("Favorited tweet \(tweetID)")
+            }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("failed to favorite")
+                print(error)
+        })
         
     }
-    func favorite() {
-        
+    func unretweet(tweetID: String) {
+        POST("1.1/statuses/unretweet/\(tweetID).json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response:AnyObject?) -> Void in
+            print("Unretweeted tweet \(tweetID)")
+            }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("failed to unretweet")
+                print(error)
+        })
     }
-    func unretweet() {
-        
-    }
-    func unfavorite() {
-        
+    func unfavorite(tweetID: String) {
+        POST("1.1/favorites/destroy.json?id=\(tweetID)", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response:AnyObject?) -> Void in
+            print("Unfavorited tweet \(tweetID)")
+            }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("failed to unfavorite")
+                print(error)
+        })
     }
 }

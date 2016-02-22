@@ -26,6 +26,8 @@ class TweetCell: UITableViewCell {
             nameLabel.text = tweet.username
             retweetLabel.text = "\(tweet.retweetCount)"
             favoriteLabel.text = "\(tweet.favoritesCount)"
+            tweetProfileLabel.layer.cornerRadius = 6.0
+            tweetProfileLabel.clipsToBounds = true
             tweetProfileLabel!.setImageWithURL(tweet.profileUrl!)
         }
     }

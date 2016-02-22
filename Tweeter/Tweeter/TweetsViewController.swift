@@ -38,7 +38,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if tweets != nil {
             return tweets.count
         }
@@ -55,6 +54,50 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBAction func onLogoutButton(sender: AnyObject) {
         TwitterClient.sharedInstance.logout()
+    }
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+        
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! TweetCell
+        let indexPath = tableView.indexPathForCell(cell)
+        let tweet = tweets[indexPath!.row]
+        if tweet.retweeted == false{
+            print("Retweeting")
+            self.tweets![indexPath!.row].retweetCount += 1
+            tweet.retweeted = true
+            TwitterClient.sharedInstance.retweet(tweet.ID)
+            self.tableView.reloadData()
+        } else if tweet.retweeted == true{
+            print("Unretweeting")
+            self.tweets![indexPath!.row].retweetCount -= 1
+            tweet.retweeted = false
+            TwitterClient.sharedInstance.unretweet(tweet.ID)
+            self.tableView.reloadData()
+        }
+    }
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! TweetCell
+        let indexPath = tableView.indexPathForCell(cell)
+        let tweet = tweets[indexPath!.row]
+    
+        if tweet.favorited == false{
+            print("Retweeting")
+            self.tweets![indexPath!.row].favoritesCount += 1
+            tweet.favorited = true
+            TwitterClient.sharedInstance.favorite(tweet.ID)
+            self.tableView.reloadData()
+        } else if tweet.favorited == true{
+            print("Unretweeting")
+            self.tweets![indexPath!.row].favoritesCount -= 1
+            tweet.favorited = false
+            TwitterClient.sharedInstance.unfavorite(tweet.ID)
+            self.tableView.reloadData()
+        }
     }
     /*
     // MARK: - Navigation
