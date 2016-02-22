@@ -3,7 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>NSAppTransportSecurity</key>
-	<dict/>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -29,7 +32,7 @@
 			<string>JETTest.Tweeter</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>cpTweeter</string>
+				<string>twitterdemo</string>
 			</array>
 		</dict>
 	</array>

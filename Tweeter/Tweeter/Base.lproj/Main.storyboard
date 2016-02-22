@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tweeter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Tweeter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,21 +17,168 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eJ-aN-7sL">
-                                <rect key="frame" x="85" y="164" width="150" height="70"/>
-                                <state key="normal" title="Log in"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW4-us-ue1">
+                                <rect key="frame" x="47" y="392" width="227" height="102"/>
+                                <color key="backgroundColor" red="0.17045766740000001" green="0.45932679900000001" blue="0.6545116165" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="20"/>
+                                <state key="normal" title="Log in with Twitter">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="logIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pBR-aj-VV6"/>
+                                    <action selector="onLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ha7-FW-VdY"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tweeter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Us2-aA-8Xw">
+                                <rect key="frame" x="20" y="84" width="280" height="86"/>
+                                <fontDescription key="fontDescription" name="IowanOldStyle-Bold" family="Iowan Old Style" pointSize="29"/>
+                                <color key="textColor" red="0.17045766740000001" green="0.45932679900000001" blue="0.6545116165" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="eCo-0r-A6K" kind="presentation" identifier="loginSegue" id="3UO-Yl-QH9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="389"/>
+            <point key="canvasLocation" x="563" y="479"/>
+        </scene>
+        <!--Tweets View Controller-->
+        <scene sceneID="XLS-Rj-a9g">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="7e5-RH-sN1" customClass="TweetsViewController" customModule="Tweeter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hcW-Mm-fe0"/>
+                        <viewControllerLayoutGuide type="bottom" id="bh8-uz-Bdc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jhY-JQ-NnC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="170" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V2S-86-ySV">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="170" id="hRL-b3-oSq" customClass="TweetCell" customModule="Tweeter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="170"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hRL-b3-oSq" id="grB-5w-G8l">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="169"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tesla Motors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg0-GW-0FI">
+                                                    <rect key="frame" x="64" y="8" width="109" height="21"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@TeslaMotors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPg-TP-qXb">
+                                                    <rect key="frame" x="64" y="28" width="109" height="21"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Feb 18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtm-nD-brh">
+                                                    <rect key="frame" x="8" y="143" width="109" height="18"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Np9-Oc-xSQ">
+                                                    <rect key="frame" x="174" y="142" width="45" height="19"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <state key="normal" image="retweet">
+                                                        <color key="titleColor" red="0.17045766740000001" green="0.45932679900000001" blue="0.6545116165" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NcH-Iv-sGW">
+                                                    <rect key="frame" x="267" y="142" width="45" height="19"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" image="favorite"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeO-c8-dDU">
+                                                    <rect key="frame" x="230" y="144" width="29" height="15"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Super Bowl car ads are charming -- but they're all gasoline powered. How 20th Century... Go EV!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ys1-u2-Y1E">
+                                                    <rect key="frame" x="8" y="64" width="304" height="78"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4A-Fo-mM7">
+                                                    <rect key="frame" x="137" y="144" width="29" height="15"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TwitterLogo_#55acee" translatesAutoresizingMaskIntoConstraints="NO" id="4QN-7U-6pJ">
+                                                    <rect key="frame" x="264" y="8" width="48" height="48"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gy6-wI-iC4">
+                                                    <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="favoriteLabel" destination="PeO-c8-dDU" id="2PU-LK-5YC"/>
+                                            <outlet property="handleLabel" destination="gPg-TP-qXb" id="uYA-fs-4wd"/>
+                                            <outlet property="nameLabel" destination="qg0-GW-0FI" id="Mwh-Ud-EQJ"/>
+                                            <outlet property="retweetLabel" destination="Z4A-Fo-mM7" id="Imq-t3-0XJ"/>
+                                            <outlet property="timestampLable" destination="dtm-nD-brh" id="rqa-Ao-q0U"/>
+                                            <outlet property="tweetProfileLabel" destination="Gy6-wI-iC4" id="1vB-OX-BIw"/>
+                                            <outlet property="tweetTextLabel" destination="ys1-u2-Y1E" id="nif-Yr-EwK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PaT-Ry-SKU">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="dTH-qM-Zan">
+                            <connections>
+                                <action selector="onLogoutButton:" destination="7e5-RH-sN1" id="fHK-vK-ikq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tableView" destination="V2S-86-ySV" id="3Fg-Y4-SKu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tvF-Qo-CWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1562" y="479"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gKQ-zF-TIQ">
+            <objects>
+                <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="eCo-0r-A6K" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="069-6X-ts1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7e5-RH-sN1" kind="relationship" relationship="rootViewController" id="CCD-pD-hNo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="egF-PK-Hx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1128" y="479"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TwitterLogo_#55acee" width="60" height="60"/>
+        <image name="favorite" width="16" height="16"/>
+        <image name="retweet" width="16" height="14"/>
+    </resources>
 </document>
