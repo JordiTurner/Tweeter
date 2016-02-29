@@ -16,6 +16,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var favoriteLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var tweetProfileLabel: UIImageView!
+    @IBOutlet weak var retweetImage: UIImageView!
+    @IBOutlet weak var favoriteImage: UIImageView!
 
     
     var tweet: Tweet! {
@@ -29,8 +31,21 @@ class TweetCell: UITableViewCell {
             tweetProfileLabel.layer.cornerRadius = 6.0
             tweetProfileLabel.clipsToBounds = true
             tweetProfileLabel!.setImageWithURL(tweet.profileUrl!)
+            if tweet.favorited {
+                favoriteImage.image = UIImage(named: "favoriteRed32.png")
+            } else {
+                favoriteImage.image = UIImage(named: "favoriteBlack32.png")
+            }
+            if tweet.retweeted {
+                retweetImage.image = UIImage(named: "retweetGreen32.png")
+            } else {
+                retweetImage.image = UIImage(named: "retweetBlack32.png")
+            }
+            
         }
     }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

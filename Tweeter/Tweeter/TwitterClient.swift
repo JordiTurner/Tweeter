@@ -107,4 +107,23 @@ class TwitterClient: BDBOAuth1SessionManager {
                 print(error)
         })
     }
-}
+    func tweetInfo(tweetID: String){
+        print("get Tweet infor")
+        
+    }
+    func userInfo(userHandle: String, success: (User) -> (), failure: (NSError) -> ()){
+        print("get User info for user: \(userHandle)")
+        
+        GET("1.1/users/show.json?screen_name=\(userHandle)", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            let userDictionary = response as? NSDictionary
+            let user = User(dictionary: userDictionary!)
+            success(user)
+            
+            }, failure: { (task: NSURLSessionDataTask?, error:NSError) -> Void in
+                failure(error)
+        })
+
+        
+    }}
+
+

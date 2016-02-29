@@ -11,6 +11,7 @@ import UIKit
 class Tweet: NSObject {
     var text: String?
     var username: String?
+    var userID: String?
     var screenname: String!
     var timestamp: String!
     var retweetCount: Int = 0
@@ -21,7 +22,6 @@ class Tweet: NSObject {
     var favorited: Bool
     
     init(dictionary: NSDictionary){
-        print(dictionary)
         text = dictionary["text"] as? String
         let timestampString = dictionary["created_at"] as? String
         if let timestampString = timestampString {
@@ -39,6 +39,7 @@ class Tweet: NSObject {
         if let user = user {
             username = user["name"] as? String
             screenname = user["screen_name"] as! String
+            userID = user["id_str"] as? String
             let profileUrlString = user["profile_image_url"] as? String
             if let profileUrlString = profileUrlString {
                 profileUrl = NSURL(string: profileUrlString)

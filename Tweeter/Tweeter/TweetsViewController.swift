@@ -21,6 +21,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 150
         
         TwitterClient.sharedInstance.homeTimeline({ (tweets: [Tweet]) -> () in
             self.tweets = tweets
@@ -34,7 +36,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Dispose of any resources that can be recreated
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,6 +50,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         cell.tweet = tweets[indexPath.row]
+//        let retweetTap = UITapGestureRecognizer.init(target: cell.retweetImage, action: "retweetTapped:")
+//        //retweetTap.delegate = self
+//        tableView.addGestureRecognizer(retweetTap)
         return cell
     }
 
@@ -55,9 +60,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func onLogoutButton(sender: AnyObject) {
         TwitterClient.sharedInstance.logout()
     }
-    
     @IBAction func onRetweet(sender: AnyObject) {
-        
         let button = sender as! UIButton
         let view = button.superview!
         let cell = view.superview as! TweetCell
@@ -77,14 +80,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView.reloadData()
         }
     }
-    
     @IBAction func onFavorite(sender: AnyObject) {
         let button = sender as! UIButton
         let view = button.superview!
         let cell = view.superview as! TweetCell
         let indexPath = tableView.indexPathForCell(cell)
         let tweet = tweets[indexPath!.row]
-    
         if tweet.favorited == false{
             print("Retweeting")
             self.tweets![indexPath!.row].favoritesCount += 1
@@ -99,14 +100,39 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView.reloadData()
         }
     }
-    /*
+    
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if (segue.identifier == "UserSegue") {
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! TweetCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let tweet = tweets[indexPath!.row]
+            let userVC = segue.destinationViewController as! UserViewController;
+            userVC.userHandle = tweet.screenname
+            
+        }
+        if (segue.identifier == "TweetSegue") {
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! TweetCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let tweet = tweets[indexPath!.row]
+            let tweetVC = segue.destinationViewController as! SingleTweetViewController;
+            tweetVC.tweet = tweet
+            
+        }
+        if (segue.identifier == "NewTweetSegue") {
+            //let newTweetVC = segue.destinationViewController as! NewTweetViewController;
+            
+            
+        }
+        
     }
-    */
+    
 
 }
