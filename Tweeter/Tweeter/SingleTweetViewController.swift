@@ -39,6 +39,7 @@ class SingleTweetViewController: UIViewController {
         profileImageView.layer.cornerRadius = 6.0
         profileImageView.clipsToBounds = true
         profileImageView!.setImageWithURL(tweet.profileUrl!)
+        replyImageView.image = UIImage(named: "reply32.png")
         if tweet.favorited {
             favoriteImageView.image = UIImage(named: "favoriteRed32.png")
         } else {

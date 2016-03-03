@@ -13,6 +13,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     static let sharedInstance = TwitterClient(baseURL: NSURL(string: "https://api.twitter.com"), consumerKey: "N96OeWkgJ3TB0ZZKNb3o5jZ8L", consumerSecret: 	"ZQ4FDKOQv2kWy1025r7cvQGnYLd8cc8kOq6Uy05hfw2xbeMqq1")
     var loginSuccess: (() -> ())?
     var loginFailure: ((NSError) -> ())?
+    
     func handleOpenUrl(url: NSURL) {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential!) -> Void in
@@ -74,6 +75,17 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     
     }
+    
+    func tweet(tweetText: String) {
+        POST("1.1/statuses/update.json?status=\(tweetText)", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response:AnyObject?) -> Void in
+            print("Tweeted")
+            
+            }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("failed to tweet")
+                print(error)
+        })
+    }
+    
     func retweet(tweetID: String) {
         POST("1.1/statuses/retweet/\(tweetID).json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response:AnyObject?) -> Void in
             print("Retweeted tweet \(tweetID)")
@@ -111,6 +123,15 @@ class TwitterClient: BDBOAuth1SessionManager {
         print("get Tweet infor")
         
     }
+    func userTimeline(userHandle: String, success: ([Tweet]) -> (), failure: (NSError) -> ()){
+        GET("1.1/statuses/user_timeline.json?screen_name=\(userHandle)&count=10", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            let dictionaries = response as! [NSDictionary]
+            let tweets = Tweet.tweetsWithArray(dictionaries)
+            success(tweets)
+            }, failure: { (task: NSURLSessionDataTask?, error:NSError) -> Void in
+                failure(error)
+        })
+    }
     func userInfo(userHandle: String, success: (User) -> (), failure: (NSError) -> ()){
         print("get User info for user: \(userHandle)")
         
@@ -124,6 +145,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
 
         
-    }}
+    }
+}
 
 

@@ -50,9 +50,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         cell.tweet = tweets[indexPath.row]
-//        let retweetTap = UITapGestureRecognizer.init(target: cell.retweetImage, action: "retweetTapped:")
-//        //retweetTap.delegate = self
-//        tableView.addGestureRecognizer(retweetTap)
         return cell
     }
 
@@ -127,8 +124,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             
         }
         if (segue.identifier == "NewTweetSegue") {
-            //let newTweetVC = segue.destinationViewController as! NewTweetViewController;
-            
+            let newTweetVC = segue.destinationViewController as! NewTweetViewController;
+            newTweetVC.userInfo = User.currentUser
             
         }
         

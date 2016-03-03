@@ -9,10 +9,20 @@
 import UIKit
 
 class NewTweetViewController: UIViewController {
-
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var textField: UITextView!
+    
+    var userInfo: User!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.nameLabel.text = self.userInfo.name
+        self.screenNameLabel.text = "@\(self.userInfo.screenname)"
+        self.profileImage.layer.cornerRadius = 6.0
+        self.profileImage.clipsToBounds = true
+        self.profileImage.setImageWithURL(self.userInfo.profileUrl!)
         // Do any additional setup after loading the view.
     }
 
@@ -21,6 +31,14 @@ class NewTweetViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onPostTweet(sender: AnyObject) {
+        let originalString = textField.text
+        let escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        
+        TwitterClient.sharedInstance.tweet(escapedString!)
+        print("posted a tweet, now head back to timeline")
+        self.performSegueWithIdentifier("postedSegue", sender: nil)
+    }
 
     /*
     // MARK: - Navigation

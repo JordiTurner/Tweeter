@@ -21,6 +21,7 @@
 		EFBB09EB1C7995C50021C5AF /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBB09EA1C7995C50021C5AF /* TweetsViewController.swift */; };
 		EFBB09EE1C7A41890021C5AF /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBB09ED1C7A41890021C5AF /* TweetCell.swift */; };
 		EFF527811C7D46740022B4EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFF527801C7D46740022B4EB /* Assets.xcassets */; };
+		EFFC43991C8823950049B93E /* UserTweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFC43981C8823950049B93E /* UserTweetCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		EFBB09EA1C7995C50021C5AF /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 		EFBB09ED1C7A41890021C5AF /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		EFF527801C7D46740022B4EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EFFC43981C8823950049B93E /* UserTweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTweetCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				EFBB09ED1C7A41890021C5AF /* TweetCell.swift */,
+				EFFC43981C8823950049B93E /* UserTweetCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			files = (
 				EFBB09E51C7988E10021C5AF /* User.swift in Sources */,
 				EF95893C1C841595001020FF /* UserViewController.swift in Sources */,
+				EFFC43991C8823950049B93E /* UserTweetCell.swift in Sources */,
 				EFBB09E71C7988EB0021C5AF /* Tweet.swift in Sources */,
 				EFBB09DC1C7974A40021C5AF /* LoginViewController.swift in Sources */,
 				EFBB09EE1C7A41890021C5AF /* TweetCell.swift in Sources */,
